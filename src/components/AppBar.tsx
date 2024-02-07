@@ -15,6 +15,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { navItems } from "../constants";
 import { colors } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   window?: () => Window;
@@ -22,25 +23,35 @@ interface Props {
 
 const drawerWidth = 240;
 
-export default function AppBarComponet(props: Props) {
+const AppBarComponent: React.FC<Props> = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{
+        textAlign: "center",
+      }}
+    >
       <Typography variant="h6" sx={{ my: 2 }}>
         MUI
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item: string) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+        {navItems.map((item: any, index: number) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton
+              onClick={() => navigate(item.url)}
+              sx={{ textAlign: "center" }}
+            >
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -76,14 +87,22 @@ export default function AppBarComponet(props: Props) {
             MUI
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item: string) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
+            {navItems.map((item: any, index: number) => (
+              <Button
+                onClick={() => navigate(item.url)}
+                key={index}
+                sx={{ color: "#fff" }}
+              >
+                {item.label}
               </Button>
             ))}
           </Box>
         </Toolbar>
       </AppBar>
+      <Box component="main" sx={{ p: 0 }}>
+        <Toolbar />
+        <Typography variant="h1" fontWeight={"800"}></Typography>
+      </Box>
       <nav>
         <Drawer
           container={container}
@@ -98,18 +117,16 @@ export default function AppBarComponet(props: Props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: colors.appBarBackgroundColor,
+              color: "white",
             },
           }}
         >
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-        <Typography variant="h1" fontWeight={"800"}>
-          App Bar component
-        </Typography>
-      </Box>
     </Box>
   );
-}
+};
+
+export default AppBarComponent;
