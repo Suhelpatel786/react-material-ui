@@ -4,6 +4,36 @@
   font-family: "Poppins", sans-serif !important;
 }
 
+.logo {
+  font-family: "Protest Guerrilla", sans-serif !important;
+}
+
 body {
   background-color: #fffff0 !important;
+}
+
+/* home image  */
+
+.heading {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.text {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  position: relative;
+  overflow: hidden !important;
+}
+
+.fixed-image {
+  object-fit: cover;
+  object-position: ce;
+  max-width: 100%; /* Cover the full width of the container */
+  max-height: 100%;
+  position: fixed; /* Fix the image in place */
+  /* Add any other styles for your fixed image */
 }

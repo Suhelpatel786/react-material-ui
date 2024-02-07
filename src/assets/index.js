@@ -10,8 +10,9 @@ import book9 from "./book9.jpg";
 import book10 from "./book10.jpg";
 import book11 from "./book11.jpg";
 import book12 from "./book12.jpg";
-
+import homeImage from "./homeImage.jpg";
 export {
+  homeImage,
   book1,
   book2,
   book10,

@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { navItems } from "../constants";
 import { colors } from "../constants";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Props {
   window?: () => Window;
@@ -28,6 +28,7 @@ const AppBarComponent: React.FC<Props> = (props) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -40,8 +41,13 @@ const AppBarComponent: React.FC<Props> = (props) => {
         textAlign: "center",
       }}
     >
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+      <Typography
+        variant="h6"
+        className="logo"
+        sx={{ my: 2 }}
+        onClick={() => navigate("/")}
+      >
+        MyBooks
       </Typography>
       <Divider />
       <List>
@@ -49,7 +55,7 @@ const AppBarComponent: React.FC<Props> = (props) => {
           <ListItem key={index} disablePadding>
             <ListItemButton
               onClick={() => navigate(item.url)}
-              sx={{ textAlign: "center" }}
+              sx={{ textAlign: "center", cursor: "pointer" }}
             >
               <ListItemText primary={item.label} />
             </ListItemButton>
@@ -82,16 +88,24 @@ const AppBarComponent: React.FC<Props> = (props) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            className="logo"
+            onClick={() => navigate("/")}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              cursor: "pointer",
+            }}
           >
-            MUI
+            MyBooks
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item: any, index: number) => (
               <Button
                 onClick={() => navigate(item.url)}
                 key={index}
-                sx={{ color: "#fff" }}
+                sx={{
+                  color: location.pathname === item.url ? "#fff" : "#e1e1e1 ",
+                }}
               >
                 {item.label}
               </Button>
