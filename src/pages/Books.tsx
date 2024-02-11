@@ -3,8 +3,15 @@ import React from "react";
 import CardComponent from "../components/Card";
 
 import { bookDetails } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 const Books = () => {
+  const navigate = useNavigate();
+
+  const bookDetailpageHandler = (id: any) => {
+    navigate(`/books/${id}`);
+  };
+
   return (
     <Box
       sx={{
@@ -22,7 +29,11 @@ const Books = () => {
       }}
     >
       {bookDetails.map((item: any) => (
-        <CardComponent key={item.id} item={item} />
+        <CardComponent
+          navigateFunction={() => bookDetailpageHandler(item.id)}
+          key={item.id}
+          item={item}
+        />
       ))}
     </Box>
   );

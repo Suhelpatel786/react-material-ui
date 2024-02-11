@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppBarComponet from "./components/AppBar";
 
 //Pages
-import { Home, Blogs, Books, Contact } from "./pages";
+import { Home, Blogs, Books, Contact, BooksDetails } from "./pages";
 // Books, Blogs, Contact
 
 function App() {
@@ -21,7 +21,21 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/books" element={<Books />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/contact"
+            element={
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Contact />
+              </Box>
+            }
+          />
+          <Route path="/books/:id" element={<BooksDetails />} />
         </Routes>
       </Box>
     </BrowserRouter>

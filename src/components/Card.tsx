@@ -5,12 +5,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, CardActionArea } from "@mui/material";
 import { book1 } from "../assets";
+import { useParams } from "react-router-dom";
 
 interface cardProps {
   item?: any;
+  navigateFunction: any;
 }
 
-export default function ActionAreaCard({ item }: cardProps) {
+export default function ActionAreaCard({ item, navigateFunction }: cardProps) {
   return (
     <Card
       sx={{
@@ -18,6 +20,7 @@ export default function ActionAreaCard({ item }: cardProps) {
         maxWidth: { xs: 300, md: 345 },
         mb: { xs: "1rem", sm: "3rem", md: "5rem" },
       }}
+      onClick={navigateFunction}
     >
       <CardActionArea>
         <CardMedia
